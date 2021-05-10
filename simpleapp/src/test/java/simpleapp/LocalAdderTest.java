@@ -1,11 +1,8 @@
-package testcontainers;
+package simpleapp;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-
-import simpleapp.IntegerArgument;
-import simpleapp.LocalAdder;
 
 public class LocalAdderTest {
 
