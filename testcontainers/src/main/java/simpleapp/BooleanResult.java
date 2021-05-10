@@ -1,4 +1,4 @@
-package testcontainers;
+package simpleapp;
 
 public class BooleanResult implements IResult<Boolean> {
 

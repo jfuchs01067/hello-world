@@ -1,4 +1,4 @@
-package testcontainers;
+package simpleapp;
 
 public class LocalAdder implements ISolver<Integer, Integer, Integer> {
 

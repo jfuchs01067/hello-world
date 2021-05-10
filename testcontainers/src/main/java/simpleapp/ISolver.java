@@ -1,4 +1,4 @@
-package testcontainers;
+package simpleapp;
 
 public interface ISolver<A, B, R> {
 	

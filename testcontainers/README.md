@@ -13,5 +13,9 @@ This is a simple piece of code with a simple unit test
 
 ### RedisAdder :rocket:
 
-This class needs a Redis database to work properly. The unit test includes testing the redis write operation. To achieve this, a docker container with a redis database is being used.
+This class needs a [Redis](redis.io) database to work properly. The unit test includes testing the redis write operation. To achieve this, a docker container with a redis database is being used.
+
+### CloudAdder :rocket::rocket:
+
+This implementation makes use of AWS APIs. To test it we have to provide the required AWS resources as mocks. This is where [LocalStack](https://github.com/localstack/localstack) comes into play.
 

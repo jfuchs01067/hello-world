@@ -1,4 +1,4 @@
-package testcontainers;
+package simpleapp;
 
 public class IntegerResult implements IResult<Integer> {
 

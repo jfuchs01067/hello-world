@@ -11,6 +11,8 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
 import redis.clients.jedis.Jedis;
+import simpleapp.IntegerArgument;
+import simpleapp.RedisAdder;
 
 @Testcontainers
 public class RedisAdderTest {

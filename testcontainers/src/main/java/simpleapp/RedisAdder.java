@@ -1,4 +1,4 @@
-package testcontainers;
+package simpleapp;
 
 import redis.clients.jedis.Jedis;
 
