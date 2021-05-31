@@ -24,7 +24,7 @@ public class RedisAdder implements ISolver<Integer, Integer, Boolean> {
 		return BooleanResult.of(even);
 	}
 
-	private void storeInRedis(IArgument<Integer, Integer> arg) {
+	protected void storeInRedis(IArgument<Integer, Integer> arg) {
 
 		try (Jedis jedis = new Jedis(host, port)) {
 
