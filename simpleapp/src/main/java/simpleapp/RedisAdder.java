@@ -4,8 +4,12 @@ import redis.clients.jedis.Jedis;
 
 public class RedisAdder implements ISolver<Integer, Integer, Boolean> {
 
+	static final String A = "a";
+	static final String B = "b";
+	
 	private String host;
 	private int port;
+	
 	
 	public RedisAdder(String host, int port) {
 		this.host = host;
@@ -28,8 +32,8 @@ public class RedisAdder implements ISolver<Integer, Integer, Boolean> {
 
 		try (Jedis jedis = new Jedis(host, port)) {
 
-			jedis.set("a", String.valueOf(arg.getA()));
-			jedis.set("b", String.valueOf(arg.getB()));
+			jedis.set(A, String.valueOf(arg.getA()));
+			jedis.set(B, String.valueOf(arg.getB()));
 		}
 
 	}
