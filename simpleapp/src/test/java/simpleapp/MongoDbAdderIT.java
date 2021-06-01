@@ -1,5 +1,7 @@
 package simpleapp;
 
+import java.util.Arrays;
+
 import org.bson.Document;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
@@ -24,12 +26,29 @@ public class MongoDbAdderIT {
 
 		EasyMock.expect(mongo.getDatabase("foo")).andReturn(database);
 		EasyMock.expect(database.getCollection("bar")).andReturn(databaseCollection);
+		
+		databaseCollection.insertOne(EasyMock.anyObject(Document.class));
+		
+		EasyMock.expect(databaseCollection.countDocuments()).andReturn(0L);
+		EasyMock.expect(databaseCollection.countDocuments()).andReturn(1L);
 
-		EasyMock.replay(mongo);
-		EasyMock.replay(database);
+		EasyMock.replay(mongo, database, databaseCollection);
 		
 		MongoDatabase mongoDatabase = mongo.getDatabase("foo");
 		MongoCollection<Document> mongoCollection = mongoDatabase.getCollection("bar");
+		
+		System.err.println(mongoCollection.countDocuments());
+		
+		// create a document
+		Document doc = new Document("name", "MongoDB")
+                .append("type", "database")
+                .append("count", 1)
+                .append("versions", Arrays.asList("v3.2", "v3.0", "v2.6"))
+                .append("info", new Document("x", 203).append("y", 102));
+		
+		mongoCollection.insertOne(doc);
+		
+		System.err.println(mongoCollection.countDocuments());
 	}
 	
 }
