@@ -22,20 +22,20 @@ public class RedisAdderIT {
 	@Container
 	public GenericContainer<?> redis = new GenericContainer<>(DockerImageName.parse("redis:5.0.3-alpine")).withExposedPorts(6379);
 	
-	private ISolver<Integer, Integer, Boolean> instance;
+	private IAdder<Integer> sut;
 	private Random random;
 	
 	@BeforeEach
 	public void setUp() {
 		
-		instance = new RedisAdder(redis.getHost(), redis.getFirstMappedPort());
+		sut = new RedisAdder(redis.getHost(), redis.getFirstMappedPort());
 		random = new Random();
 	}
 	
 	@AfterEach
 	public void tearDown() {
 		
-		instance = null;
+		sut = null;
 		random = null;
 	}
 	
@@ -44,10 +44,9 @@ public class RedisAdderIT {
 		
 		int a = random.nextInt() / 2;
 		int b = random.nextInt() / 2;
-		int sum = a + b;
-		boolean expected = sum % 2 == 0;
+		int expected = a + b;
 		
-		boolean result = instance.solve(IntegerArgument.of(a, b)).get();
+		int result = sut.add(a, b);
 		
 		assertEquals(expected, result);
 		

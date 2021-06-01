@@ -70,7 +70,6 @@ public class SimpleMessageListenerIT {
 
 	@Test
 	public void testMessageShouldBeUploadedToS3OnceConsumed() {
-		System.err.println("This is an integration test.");
 		
 		String orderId = UUID.randomUUID().toString();
 		OrderEvent orderEvent = new OrderEvent(orderId, "MacBook", "42", LocalDateTime.now(), false);

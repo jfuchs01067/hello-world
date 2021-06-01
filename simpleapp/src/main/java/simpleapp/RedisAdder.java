@@ -2,7 +2,7 @@ package simpleapp;
 
 import redis.clients.jedis.Jedis;
 
-public class RedisAdder implements ISolver<Integer, Integer, Boolean> {
+public class RedisAdder implements IAdder<Integer> {
 
 	static final String A = "a";
 	static final String B = "b";
@@ -17,23 +17,19 @@ public class RedisAdder implements ISolver<Integer, Integer, Boolean> {
 	} 
 
 	@Override
-	public IResult<Boolean> solve(IArgument<Integer, Integer> arg) {
+	public Integer add(Integer a, Integer b) {
 
-		storeInRedis(arg);
+		storeInRedis(a, b);
 
-		int sum = arg.getA() + arg.getB();
-
-		boolean even = sum % 2 == 0;
-
-		return BooleanResult.of(even);
+		return a + b;
 	}
 
-	protected void storeInRedis(IArgument<Integer, Integer> arg) {
+	protected void storeInRedis(Integer a, Integer b) {
 
 		try (Jedis jedis = new Jedis(host, port)) {
 
-			jedis.set(A, String.valueOf(arg.getA()));
-			jedis.set(B, String.valueOf(arg.getB()));
+			jedis.set(A, String.valueOf(a));
+			jedis.set(B, String.valueOf(b));
 		}
 
 	}

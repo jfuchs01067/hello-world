@@ -1,10 +1,11 @@
 package simpleapp;
 
-public class LocalAdder implements ISolver<Integer, Integer, Integer> {
+public class LocalAdder implements IAdder<Integer> {
 
-	public IResult<Integer> solve(IArgument<Integer, Integer> arg) {
+	@Override
+	public Integer add(Integer a, Integer b) {
 		
-		return IntegerResult.of(arg.getA() + arg.getB());
+		return a + b;
 	}
 
 }

@@ -10,20 +10,20 @@ import org.junit.jupiter.api.Test;
 
 public class MockedRedisAdderTest {
 
-	private ISolver<Integer, Integer, Boolean> instance;
+	private IAdder<Integer> sut;
 	
 	@BeforeEach
 	public void setUp() {
-		instance = new RedisAdder(null, 0) {
+		sut = new RedisAdder(null, 0) {
 			@Override
-			protected void storeInRedis(IArgument<Integer, Integer> arg) {			
+			protected void storeInRedis(Integer a, Integer b) {			
 			}
 		};
 	}
 	
 	@AfterEach
 	public void tearDown() {
-		instance = null;
+		sut = null;
 	}
 	
 	@Test
@@ -33,10 +33,9 @@ public class MockedRedisAdderTest {
 		
 		int a = random.nextInt() / 2;
 		int b = random.nextInt() / 2;
-		int sum = a + b;
-		boolean expected = sum % 2 == 0;
+		int expected = a + b;
 		
-		boolean result = instance.solve(IntegerArgument.of(a, b)).get();
+		int result = sut.add(a, b);
 		
 		assertEquals(expected, result);
 	}

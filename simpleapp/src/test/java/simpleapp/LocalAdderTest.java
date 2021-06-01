@@ -7,16 +7,16 @@ import org.junit.jupiter.api.Test;
 
 public class LocalAdderTest {
 
-	private LocalAdder instance;
+	private LocalAdder sut;
 	
 	@BeforeEach
 	public void setUp() {
-		instance = new LocalAdder();
+		sut = new LocalAdder();
 	}
 	
 	@AfterEach
 	public void tearDown() {
-		instance = null;
+		sut = null;
 	}
 	
 	@Test
@@ -26,7 +26,7 @@ public class LocalAdderTest {
 		int b = 2;
 		int expected = a + b;
 		
-		int result = instance.solve(IntegerArgument.of(a, b)).get();
+		int result = sut.add(a, b);
 		
 		assertEquals(expected, result);
 	}
